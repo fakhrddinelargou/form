@@ -1,83 +1,90 @@
 import React from "react";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import Success from "./componentes/Success";
 import "./App.css";
 
 function App() {
-  // type FormEntry = {
-  //   fName: string;
-  //   lName: string;
-  //   email: string;
-  //   message: string;
-  //   radio: string;
-  // };
+  type FormEntry = {
+    fName: string;
+    lName: string;
+    email: string;
+    message: string;
+    radio: string;
+    isCheck: boolean;
+  };
   const [fName, setfName] = useState<string>("");
   const [lName, setlName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [radio, setRadio] = useState<string>("");
- // const [entries, setEntries] = useState<FormEntry[]>([]);
+  const [entries, setEntries] = useState<FormEntry[]>([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isCheck, setIscheck] = useState(false);
-const [showSuccess, setShowSuccess] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
+  useEffect(() => {
 
+    if (showSuccess) {
+      const timer = setTimeout(() => {
+        setShowSuccess(false);
+      }, 3000);
 
+      return () => clearTimeout(timer); // Cleanup
+    }
+  }, [showSuccess, setShowSuccess]);
 
-useEffect(() => {
-  if (showSuccess) {
-    const timer = setTimeout(() => {
-      setShowSuccess(false);
-    }, 3000); 
+  const submit = (): void => {
+
+     const newEntry: FormEntry = {
+    fName,
+    lName,
+    email,
+    radio,
+    message,
+    isCheck
+  };
+  setEntries([...entries, newEntry]);
+
+  
+  if (
+    fName !== "" &&
+    lName !== "" &&
+    email.endsWith("@gmail.com") &&
+    radio !== "" &&
+    message !== "" &&
+    isCheck
+  ) {
+    setShowSuccess(true);
     
-    return () => clearTimeout(timer); // Cleanup
-  }
-}, [showSuccess, setShowSuccess]);
-
-const submit = (): void => {
-
-
-if (
-  fName !== "" &&
-  lName !== "" &&
-  email.endsWith("@gmail.com") &&
-  radio !== "" &&
-  message !== "" &&
-  isCheck 
-) {
-  setShowSuccess(true);
-
-  setfName("")
-  setlName("")
-  setEmail("")
-  setMessage("")
-  setRadio("")
+      setfName("");
+      setlName("");
+      setEmail("");
+      setMessage("");
+      setRadio("");
+      setIscheck(false);
       setIsSubmitted(false);
-}
-  //  let isValid = true;
-    // if (isValid) {
-    //   const newEnter: FormEntry = { fName, lName, email, message, radio };
-    //   setEntries((prev) => [...prev, newEnter]);
-    // }
-    setIsSubmitted(true);
+    } else {
+      console.log("you forget item");
+      setIsSubmitted(true);
+
+    }
   };
 
-
+ 
 
   const handleCheck = () => {
-    setIscheck(true);
+    setIscheck(!isCheck);
   };
 
-  console.log(isCheck);
+
 
   const handleRadio = (value: string) => {
     setRadio(value);
   };
-  console.log(radio);
 
   return (
     <div className="card">
-      <Success showSuccess ={showSuccess}  />
+      <Success showSuccess={showSuccess} />
       <h2>Contact Us</h2>
       <div className="name">
         <label htmlFor="" className="flex-column fName">
@@ -211,6 +218,7 @@ if (
             type="checkbox"
             className="checkbox"
             id="checkbox"
+            checked={isCheck}
             onChange={handleCheck}
           />
           I hereby consent to being contacted by the team{" "}

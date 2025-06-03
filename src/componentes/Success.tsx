@@ -7,7 +7,11 @@ type Props = {
 function Success({ showSuccess }: Props) {
   return (
     <>
+
       {showSuccess && (
+        <div className='position'>
+
+     
         <div className="mssg-snt">
           <p className="done">
             <span>
@@ -19,6 +23,7 @@ function Success({ showSuccess }: Props) {
             Thanks for completing the form. We'll be in touch soon!
           </p>
         </div>
+           </div>
       )}
     </>
   );

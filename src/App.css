@@ -225,13 +225,21 @@ color: var(--Red);
 
 /* message form */
 
+.position{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 1rem;
+  left: 0;
+  top: 0;
+
+}
 
 .mssg-snt{
   background:var(--Grey-900-darker) ;
-  position: absolute;
-  top: 1%;
-  left: 50%;
-  transform: translate(-50%,0);
   padding: 2rem;
   border-radius: .6rem;
   width: 35rem;
