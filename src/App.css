@@ -32,6 +32,11 @@ html{
 --Grey-500-medium: hsl(186, 15%, 59%);
 --Grey-900-darker: hsl(187, 24%, 22%);
 }
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
 label{
     color: var(--Grey-900-darker);
@@ -48,9 +53,13 @@ input{
     border: solid .14rem;
     border-color:var(--Grey-500-medium) ;
 }
+input:focus{
+  border-color:var(--Green-600-medium) ;
+}
+
 .card{
   border-radius: 1rem;
-  min-width: 50rem;
+
     background: var(--White);
     padding: 2rem;
     display: flex;
@@ -185,6 +194,9 @@ width: 100%;
         color: var(--Grey-900-darker);
         font-size: 1.6rem;
 }
+.mssg:focus{
+  border-color:var(--Green-600-medium) ;
+}
 .check{
   display: flex;
   gap: 1.5rem;
@@ -200,6 +212,7 @@ width: 100%;
 .submit{
   background: var(--Green-600-medium);
   border: none;
+  border-radius: .6rem;
   color: var(--White);
   letter-spacing: .1rem;
   padding: 1.3rem;
@@ -211,7 +224,7 @@ width: 100%;
     border-color:var(--Red) !important;
 }
 
-.color{
+.red-text{
   font-size: 1.4rem;
   margin-top: -.8rem;
 color: var(--Red);
@@ -269,4 +282,26 @@ color: var(--Red);
 .description{
   color: var(--Green-200-lighter);
   font-size: 1.3rem;
+}
+
+
+@media screen and (max-width:50rem) {
+
+#root{
+  padding: 9rem 0 ;
+}
+.name{
+    flex-direction: column;
+}
+
+.card{
+ max-width: 90%;
+}
+
+.radio-button{
+  font-size: 1.2rem;
+}
+.mssg{
+  height: 30rem;
+}
 }

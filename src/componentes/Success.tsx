@@ -1,14 +1,9 @@
 import { CircleCheck } from 'lucide-react';
 
-type Props = {
-  showSuccess: boolean;
-};
-
-function Success({ showSuccess }: Props) {
+function Success() {
   return (
-    <>
-
-      {showSuccess && (
+    
+ 
         <div className='position'>
 
      
@@ -24,8 +19,7 @@ function Success({ showSuccess }: Props) {
           </p>
         </div>
            </div>
-      )}
-    </>
+     
   );
 }
 
